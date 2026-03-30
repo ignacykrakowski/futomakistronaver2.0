@@ -1815,7 +1815,7 @@ Tworzymy nowoczesny content marketingowy dopasowany do tempa współczesnej komu
       content.style.display = 'none';
       footer.style.display = 'none';
       doneEl.classList.add('show');
-      dots.forEach(d => d.classList.remove('active'));
+      dots.forEach(d => { d.classList.remove('active'); d.classList.add('done'); });
       lines.forEach(l => l.style.width = '100%');
     }
 
