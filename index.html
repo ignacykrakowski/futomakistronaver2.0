@@ -21,12 +21,12 @@
 
     /* ─── Brand Colors – Light (default) ────────────────────────── */
     :root {
-      --bg:          #F0EDE5;
+      --bg:          linear-gradient(180deg,#e8e6e2,#b2aca0bf);
       --bg-alt:      #E8E4DC;
       --bg-mid:      #EAE6DD;
-      --text:        #060D0C;
-      --text-muted:  rgba(6,13,12,0.48);
-      --text-dim:    rgba(6,13,12,0.3);
+      --text:        #12162d;
+      --text-muted:  rgb(19, 32, 42);
+      --text-dim:    rgba(6, 11, 13, 0.3);
       --card:        rgba(6,13,12,0.04);
       --border:      rgba(6,13,12,0.08);
       --border-mid:  rgba(6,13,12,0.13);
@@ -37,7 +37,7 @@
       --ring-s:      rgba(6,13,12,0.08);
       --ring-m:      rgba(6,13,12,0.13);
       --ring-dot:    rgba(6,13,12,0.4);
-      --nav-bg:      rgba(240,237,229,0.82);
+      --nav-bg:      rgba(183, 180, 174, 0.82);
       --nav-bdr:     rgba(6,13,12,0.07);
       --cursor-bdr:  rgba(6,13,12,0.3);
       --cursor-bg:   rgba(6,13,12,0.04);
@@ -55,9 +55,9 @@
       --badge-bdr:   rgba(6,13,12,0.09);
       --badge-dim:   rgba(6,13,12,0.38);
       --badge-main:  #060D0C;
-      --ph1: linear-gradient(145deg,#D8D4CC,#E0DCD4);
-      --ph2: linear-gradient(145deg,#C8C4BC,#D8D4CC);
-      --ph3: linear-gradient(145deg,#C0BCA8,#CCCAB8);
+      --ph1: linear-gradient(145deg,#49443a,#E0DCD4);
+      --ph2: linear-gradient(145deg,#6a6458,#D8D4CC);
+      --ph3: linear-gradient(145deg,#6a6757,#CCCAB8);
       --footer-bg:   #E0DCD4;
       --footer-text: rgba(6,13,12,0.38);
       --footer-logo: rgba(6,13,12,0.65);
@@ -65,8 +65,8 @@
 
     /* ─── Dark Mode ──────────────────────────────────────────────── */
     [data-theme="dark"] {
-      --bg:          #060D0C;
-      --bg-alt:      #0c1512;
+      --bg:          radial-gradient(#1c1d24,#000000);
+      --bg-alt:      linear-gradient(270deg,#0d0d10,#000000);
       --bg-mid:      #030806;
       --text:        #F0EDE5;
       --text-muted:  rgba(240,237,229,0.48);
@@ -99,9 +99,9 @@
       --badge-bdr:   rgba(240,237,229,0.1);
       --badge-dim:   rgba(240,237,229,0.4);
       --badge-main:  #F0EDE5;
-      --ph1: linear-gradient(145deg,#0c1512,#060D0C);
-      --ph2: linear-gradient(145deg,#060D0C,#0c1512);
-      --ph3: linear-gradient(145deg,#030806,#060D0C);
+      --ph1: linear-gradient(145deg,#1c1d24,#000000);
+      --ph2: linear-gradient(145deg,#1c1d24,#0c1512);
+      --ph3: linear-gradient(145deg,#1c1d24,#060D0C);
       --footer-bg:   #030806;
       --footer-text: rgba(240,237,229,0.3);
       --footer-logo: rgba(240,237,229,0.7);
@@ -120,24 +120,6 @@
       background-size: 200px 200px;
     }
 
-    /* ─── Cursor follower ───────────────────────────────────────── */
-    #cursor-ring {
-      position: fixed;
-      width: 36px; height: 36px;
-      border: 1px solid var(--cursor-bdr);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9997;
-      transform: translate(-50%, -50%);
-      transition: width 0.3s cubic-bezier(0.34,1.56,0.64,1),
-                  height 0.3s cubic-bezier(0.34,1.56,0.64,1),
-                  opacity 0.3s, border-color 0.4s;
-    }
-    .cursor-hover #cursor-ring {
-      width: 56px; height: 56px;
-      border-color: var(--cursor-bdr);
-      background: var(--cursor-bg);
-    }
 
     /* ─── Utility ───────────────────────────────────────────────── */
     section { padding: 100px 24px; }
@@ -294,7 +276,7 @@
       align-items: center;
       position: relative;
       overflow: hidden;
-      padding: 120px 24px 80px;
+      padding: 10px 24px 80px;
       gap: 60px;
       max-width: 1160px;
       margin: 0 auto;
@@ -326,15 +308,16 @@
     }
 
     .hero-eyebrow {
-      display: inline-flex;
+      display: block;
       align-items: center;
       gap: 10px;
       font-size: 0.78rem;
-      font-weight: 600;
+      font-weight: 400;
       color: var(--primary);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 32px;
+      margin-bottom: 64px;
+      margin-left:2%;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 0.7s 0.2s cubic-bezier(0.34,1.2,0.64,1) forwards;
@@ -347,12 +330,12 @@
 
     h1 {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(3rem, 5.5vw, 5rem);
-      font-weight: 900;
-      line-height: 1.1;
+      font-size: clamp(4rem, 5.5vw, 5rem);
+      font-weight: 600;
+      line-height: 1;
       letter-spacing: -0.02em;
       color: var(--text);
-      margin-bottom: 28px;
+      margin-bottom: 32px;
       opacity: 0;
       transform: translateY(30px);
       animation: fadeUp 0.7s 0.35s cubic-bezier(0.34,1.2,0.64,1) forwards;
@@ -362,7 +345,7 @@
     }
 
     .hero-sub {
-      font-size: 1.02rem;
+      font-size: 1.2rem;
       line-height: 1.78;
       color: var(--text-muted);
       max-width: 480px;
@@ -523,8 +506,8 @@
     }
     #problem h2 {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 800;
+      font-size: clamp(3rem, 4vw, 4rem);
+      font-weight: 600;
       line-height: 1.15;
       letter-spacing: -0.02em;
       margin-bottom: 48px;
@@ -539,7 +522,7 @@
     .problem-text p {
       font-size: 1rem;
       line-height: 1.82;
-      color: var(--text-muted);
+      color: var(--text);
       margin-bottom: 18px;
     }
     .problem-text strong { color: var(--text); }
@@ -565,18 +548,18 @@
     #why h2 {
       font-family: 'Outfit', sans-serif;
       font-size: clamp(1.9rem, 3.5vw, 3rem);
-      font-weight: 800;
+      font-weight: 600;
       letter-spacing: -0.02em;
       margin-bottom: 14px;
       color: var(--text);
     }
     #why h2 em {
-      color: var(--text-muted);
+      color: var(--text);
       font-style: normal;
     }
     .why-intro {
       font-size: 1rem;
-      color: var(--text-muted);
+      color: var(--text);
       max-width: 560px;
       line-height: 1.78;
       margin-bottom: 56px;
@@ -647,7 +630,7 @@
     .carousel-card p {
       font-size: 0.87rem;
       line-height: 1.7;
-      color: var(--text-muted);
+      color: var(--text);
     }
     /* ─── Magic Rings ────────────────────────────────────────────── */
     .magic-rings {
@@ -775,73 +758,211 @@
       width: 100%; height: 100%;
     }
 
-    /* ─── PROCESS ───────────────────────────────────────────────── */
+    /* ─── PROCESS / STEPPER ─────────────────────────────────────── */
     #process { background: var(--bg-mid); }
     #process h2 {
       font-family: 'Outfit', sans-serif;
       font-size: clamp(1.9rem, 3.5vw, 3rem);
-      font-weight: 800;
+      font-weight: 600;
       letter-spacing: -0.02em;
-      margin-bottom: 72px;
+      margin-bottom: 56px;
       text-align: center;
       color: var(--text);
     }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      position: relative;
-    }
-    .steps-connector {
-      position: absolute;
-      top: 35px;
-      left: calc(12.5% + 32px);
-      right: calc(12.5% + 32px);
-      height: 1px;
-      background: linear-gradient(90deg, var(--border-mid), var(--border));
-    }
-    .step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 0 10px;
-      position: relative;
-      z-index: 1;
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.55s cubic-bezier(0.34,1.2,0.64,1),
-                  transform 0.55s cubic-bezier(0.34,1.2,0.64,1);
-    }
-    .step.visible { opacity: 1; transform: translateY(0); }
-    .step:nth-child(2) { transition-delay: 0.12s; }
-    .step:nth-child(3) { transition-delay: 0.24s; }
-    .step:nth-child(4) { transition-delay: 0.36s; }
-    .step-num {
-      width: 70px; height: 70px;
-      border-radius: 50%;
+
+    /* Stepper wrapper */
+    .stepper-wrap {
+      max-width: 640px;
+      margin: 0 auto;
       background: var(--card);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--border);
-      color: var(--text);
-      font-size: 1.05rem;
-      font-weight: 800;
+      border-radius: 24px;
+      padding: 40px 48px 36px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 8px 40px var(--shadow-md), inset 0 1px 0 var(--inset);
+    }
+
+    /* Top step indicators */
+    .stepper-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .stepper-dot {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--border-mid);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 700;
       font-family: 'Outfit', sans-serif;
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 24px;
-      box-shadow: 0 4px 20px var(--shadow-md), inset 0 1px 0 var(--inset);
-      transition: background 0.3s, color 0.3s, border-color 0.3s,
+      flex-shrink: 0;
+      transition: background 0.3s, border-color 0.3s, color 0.3s,
                   transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      cursor: pointer;
     }
-    .step:hover .step-num {
+    .stepper-dot.active {
+      background: var(--btn-fill);
+      border-color: var(--btn-fill);
+      color: var(--btn-text);
+      transform: scale(1.15);
+      box-shadow: 0 4px 16px var(--shadow-md);
+    }
+    .stepper-dot.done {
+      background: var(--border-mid);
+      border-color: var(--border-mid);
+      color: var(--text);
+    }
+    .stepper-dot.done::after {
+      content: '✓';
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .stepper-dot.done span { display: none; }
+    .stepper-line {
+      flex: 1;
+      height: 2px;
+      background: var(--border);
+      margin: 0 8px;
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .stepper-line-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--btn-fill);
+      border-radius: 2px;
+      transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* Content area */
+    .stepper-content {
+      min-height: 130px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stepper-panel {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      opacity: 0;
+      transform: translateX(32px);
+      transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1),
+                  transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      pointer-events: none;
+    }
+    .stepper-panel.active {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+      position: relative;
+    }
+    .stepper-panel.exit {
+      opacity: 0;
+      transform: translateX(-32px);
+    }
+    .stepper-panel h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .stepper-panel p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Footer buttons */
+    .stepper-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .stepper-progress {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: 0.03em;
+    }
+    .stepper-btns { display: flex; gap: 10px; }
+    .stepper-btn {
+      padding: 9px 22px;
+      border-radius: 100px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border-mid);
+      background: transparent;
+      color: var(--text);
+      transition: background 0.2s, color 0.2s, border-color 0.2s,
+                  transform 0.2s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.2s;
+    }
+    .stepper-btn:hover {
+      background: var(--card);
+      border-color: var(--border-mid);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px var(--shadow-sm);
+    }
+    .stepper-btn:active { transform: scale(0.97); }
+    .stepper-btn.primary {
       background: var(--btn-fill);
       color: var(--btn-text);
       border-color: transparent;
-      transform: scale(1.1);
     }
-    .step h3 { font-family: 'Outfit', sans-serif; font-size: 0.94rem; font-weight: 700; margin-bottom: 10px; color: var(--text); }
-    .step p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.65; }
+    .stepper-btn.primary:hover {
+      box-shadow: 0 6px 20px var(--shadow-md);
+    }
+    .stepper-btn:disabled {
+      opacity: 0.3;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* Completed state */
+    .stepper-done {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+      padding: 16px 0;
+      animation: fadeInUp 0.5s cubic-bezier(0.34,1.2,0.64,1) both;
+    }
+    .stepper-done.show { display: flex; }
+    .stepper-done-icon {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: var(--btn-fill);
+      color: var(--btn-text);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 8px 24px var(--shadow-md);
+    }
+    .stepper-done h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .stepper-done p { font-size: 0.88rem; color: var(--text-muted); }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
     /* ─── BANNER ────────────────────────────────────────────────── */
     #banner {
@@ -883,7 +1004,7 @@
     #banner h2 {
       font-family: 'Outfit', sans-serif;
       font-size: clamp(2rem, 5vw, 3.6rem);
-      font-weight: 800;
+      font-weight: 600;
       line-height: 1.12;
       letter-spacing: -0.02em;
       color: var(--text);
@@ -895,8 +1016,8 @@
     }
     #banner p {
       font-size: 1rem;
-      color: var(--text-muted);
-      margin-bottom: 44px;
+      color: var(--text);
+      margin-bottom: 48px;
       line-height: 1.78;
     }
 
@@ -905,7 +1026,7 @@
     #portfolio h2 {
       font-family: 'Outfit', sans-serif;
       font-size: clamp(1.9rem, 3.5vw, 3rem);
-      font-weight: 800;
+      font-weight: 600;
       letter-spacing: -0.02em;
       margin-bottom: 52px;
       color: var(--text);
@@ -988,7 +1109,7 @@
     .ph2 { background: var(--ph2); }
     .ph3 { background: var(--ph3); }
     .portfolio-cta { text-align: center; margin-top: 48px; }
-    .portfolio-cta p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .portfolio-cta p { color: var(--text); font-size: 0.9rem; margin-bottom: 20px; }
 
     /* ─── CONTACT ───────────────────────────────────────────────── */
     #contact { background: var(--bg-alt); }
@@ -1001,7 +1122,7 @@
     #contact h2 {
       font-family: 'Outfit', sans-serif;
       font-size: clamp(1.9rem, 3.5vw, 3rem);
-      font-weight: 800;
+      font-weight: 600;
       letter-spacing: -0.02em;
       margin-bottom: 16px;
       color: var(--text);
@@ -1094,24 +1215,24 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ─── Responsive ────────────────────────────────────────────── */
-    @media (max-width: 960px) {
+    @media (max-width: 1020px) {
       #hero { grid-template-columns: 1fr; text-align: center; }
       .hero-sub { margin-left: auto; margin-right: auto; }
       .hero-cta { justify-content: center; }
+      .nav-sublinks {display:none; }
       .hero-visual { display: none; }
       .problem-body { grid-template-columns: 1fr; gap: 32px; }
-      .steps { grid-template-columns: 1fr 1fr; }
-      .steps-connector { display: none; }
+      .stepper-wrap { padding: 28px 24px 24px; }
       .portfolio-grid { grid-template-columns: 1fr 1fr; }
       .portfolio-item:first-child { grid-column: span 2; min-height: 300px; }
       .contact-grid { grid-template-columns: 1fr; gap: 48px; }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       section { padding: 72px 20px; }
       nav { padding: 14px 20px; }
-      .nav-links { display: none; }
+      .nav-sublinks {display:none; }
       h1 { font-size: clamp(2.6rem, 11vw, 3.6rem); }
-      .steps { grid-template-columns: 1fr; }
+      .stepper-dot { width: 30px; height: 30px; font-size: 0.72rem; }
       .portfolio-grid { grid-template-columns: 1fr; }
       .portfolio-item:first-child { grid-column: span 1; min-height: 240px; }
       .portfolio-item:not(:first-child) { aspect-ratio: 16/9; }
@@ -1122,16 +1243,15 @@
 <body>
 
 <canvas id="spark-canvas"></canvas>
-<div id="cursor-ring"></div>
 
 <!-- ─── NAV ─────────────────────────────────────────────────────── -->
 <nav id="navbar">
   <a class="nav-logo" href="#">futomaki</a>
   <ul class="nav-links">
-    <li><a href="#problem">O co chodzi?</a></li>
-    <li><a href="#why">Dlaczego my</a></li>
-    <li><a href="#process">Jak działamy</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
+    <li class="nav-sublinks"><a href="#problem">O co chodzi?</a></li>
+    <li class="nav-sublinks"><a href="#why">Dlaczego my</a></li>
+    <li class="nav-sublinks"><a href="#process">Jak działamy</a></li>
+    <li class="nav-sublinks"><a href="#portfolio">Portfolio</a></li>
     <li><a href="#contact" class="btn btn-primary" style="padding:10px 22px;font-size:0.84rem;">Napisz do nas</a></li>
     <li><button id="theme-toggle" aria-label="Przełącz motyw">☀️</button></li>
   </ul>
@@ -1173,8 +1293,9 @@
       </div>
       <h1>Świeże wideo,<br><span class="hero-italic">szybciej niż myślisz</span></h1>
       <p class="hero-sub">
-        Dostarczamy materiały wideo, które wyróżniają Twoją markę w Social Media.
-        Nowoczesny content marketingowy dopasowany do tempa współczesnej komunikacji.
+Dostarczamy materiały wideo, które wyróżnią Cię w&nbspmediach społecznościowych.
+Tworzymy nowoczesny content marketingowy dopasowany do tempa współczesnej komunikacji.
+
       </p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-primary">Napisz do nas &nbsp;→</a>
@@ -1216,9 +1337,10 @@
     <h2>Jeśli nie publikujesz wideo,<br>oddajesz pole swojej konkurencji</h2>
     <div class="problem-body">
       <div class="problem-text reveal">
-        <p>W świecie Social Media wygrywają marki, które potrafią opowiadać swoje historie dynamicznie, atrakcyjnie i regularnie.</p>
+        <p>Dziel lub rządź! </br>W świecie mediów społecznościowych wygrywają Ci, którzy potrafią opowiadać historie dynamicznie, atrakcyjnie i regularnie.</p>
         <p>Produkcja wideo często kojarzy się jednak z długim procesem, wysokimi kosztami i skomplikowaną organizacją.</p>
-        <p>Jeśli proces tworzenia materiałów wideo Cię przytłacza – <strong>mamy rozwiązanie.</strong></p>
+        <p>Jeśli proces tworzenia materiałów wideo Cię przytłacza – <strong>mamy rozwiązanie!</strong></p>
+</p>
       </div>
       <div class="reveal" style="transition-delay:0.15s;">
         <div class="problem-quote">
@@ -1236,8 +1358,7 @@
     <div class="tag">Dlaczego futomaki?</div>
     <h2>Doświadczenie w marketingu<br>wideo, <em>które działa</em></h2>
     <p class="why-intro reveal">
-      Łączymy doświadczenie w marketingu wideo z nowoczesnymi narzędziami produkcji treści.
-      Tworzymy materiały, które nie tylko dobrze wyglądają, ale przede wszystkim <strong>działają marketingowo i sprzedażowo.</strong>
+      Łączymy doświadczenie w marketingu wideo z nowoczesnymi narzędziami produkcji. Tworzymy materiały, które dobrze wyglądają i <strong>przede wszystkim działają.</strong>
     </p>
 
     <!-- 3D Carousel -->
@@ -1289,29 +1410,57 @@
   <div class="container">
     <div class="tag" style="display:flex;width:fit-content;margin:0 auto 20px;">Jak wygląda współpraca?</div>
     <h2>Prosto. Szybko. Skutecznie.</h2>
-    <div class="steps">
-      <div class="steps-connector"></div>
-      <div class="step">
-        <div class="step-num">01</div>
-        <h3>Brief & konsultacja</h3>
-        <p>Rozmawiamy o Twojej marce, celach i grupie docelowej. Wspólnie ustalamy kierunek komunikacji.</p>
+
+    <div class="stepper-wrap reveal" id="stepper">
+      <!-- Header: dots + lines -->
+      <div class="stepper-header" id="stepper-header">
+        <div class="stepper-dot active" data-step="0"><span>01</span></div>
+        <div class="stepper-line"><div class="stepper-line-fill" id="line-0"></div></div>
+        <div class="stepper-dot" data-step="1"><span>02</span></div>
+        <div class="stepper-line"><div class="stepper-line-fill" id="line-1"></div></div>
+        <div class="stepper-dot" data-step="2"><span>03</span></div>
+        <div class="stepper-line"><div class="stepper-line-fill" id="line-2"></div></div>
+        <div class="stepper-dot" data-step="3"><span>04</span></div>
       </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h3>Koncepcja & scenariusz</h3>
-        <p>Przygotowujemy scenariusz i storyboard dopasowany do Twoich kanałów social media.</p>
+
+      <!-- Step content panels -->
+      <div class="stepper-content" id="stepper-content">
+        <div class="stepper-panel active" data-panel="0">
+          <h3>Brief i konsultacja</h3>
+          <p>Rozmawiamy o Twojej marce, celach i grupie docelowej. Wspólnie ustalamy kierunek komunikacji i formaty, które najlepiej zadziałają w Twoich kanałach.</p>
+        </div>
+        <div class="stepper-panel" data-panel="1">
+          <h3>Koncepcja & scenariusz</h3>
+          <p>Przygotowujemy scenariusz i storyboard dopasowany do Twoich kanałów social media. Przed realizacją akceptujesz każdy etap.</p>
+        </div>
+        <div class="stepper-panel" data-panel="2">
+          <h3>Produkcja</h3>
+          <p>Realizujemy materiał według ustalonego planu. Szybko, sprawnie, bez zbędnych opóźnień — od ujęcia do postprodukcji.</p>
+        </div>
+        <div class="stepper-panel" data-panel="3">
+          <h3>Dostawa i wsparcie</h3>
+          <p>Dostarczamy gotowe pliki zoptymalizowane pod każdą platformę. Pozostajemy do dyspozycji na kolejne projekty.</p>
+        </div>
       </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h3>Produkcja</h3>
-        <p>Realizujemy materiał według ustalonego planu. Szybko, sprawnie, bez zbędnych opóźnień.</p>
+
+      <!-- Done state -->
+      <div class="stepper-done" id="stepper-done">
+        <div class="stepper-done-icon">✓</div>
+        <h3>Gotowe! Skontaktuj się z nami</h3>
+        <p>Wiesz już, jak wygląda nasz proces. Napisz do nas i zacznijmy współpracę.</p>
+        <a href="#contact" class="btn btn-primary" style="margin-top:8px;">Napisz do nas →</a>
       </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <h3>Dostawa & wsparcie</h3>
-        <p>Dostarczamy gotowe pliki zoptymalizowane pod każdą platformę. Pozostajemy do dyspozycji.</p>
+
+      <!-- Footer -->
+      <div class="stepper-footer" id="stepper-footer">
+        <span class="stepper-progress" id="stepper-progress">Krok 1 z 4</span>
+        <div class="stepper-btns">
+          <button class="stepper-btn" id="stepper-prev" disabled>Wstecz</button>
+          <button class="stepper-btn primary" id="stepper-next">Dalej</button>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1374,9 +1523,10 @@
 <!-- ─── CONTACT ───────────────────────────────────────────────────── -->
 <section id="contact">
   <div class="container">
+    <div class="tag">Kontakt</div>
     <div class="contact-grid">
       <div>
-        <div class="tag">Kontakt</div>
+        
         <h2>Zacznijmy<br><em>współpracę!</em></h2>
         <p class="contact-sub">
           Opowiedz nam o swoim projekcie, a my wrócimy do Ciebie w ciągu 24 godzin z konkretną propozycją.
@@ -1593,26 +1743,6 @@
     goTo(0);
   })();
 
-  /* ── Custom cursor ───────────────────────────────────────────── */
-  const ring = document.getElementById('cursor-ring');
-  let mx = -200, my = -200, rx = -200, ry = -200;
-
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-  });
-
-  (function animRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    requestAnimationFrame(animRing);
-  })();
-
-  document.querySelectorAll('a, button, .feature-card, .portfolio-item, .step').forEach(el => {
-    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-  });
 
   /* ── Navbar scroll ───────────────────────────────────────────── */
   const navbar = document.getElementById('navbar');
@@ -1625,7 +1755,103 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
 
-  document.querySelectorAll('.reveal, .step').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── Stepper ─────────────────────────────────────────────────── */
+  (function() {
+    const STEPS = 4;
+    let current = 0;
+
+    const dots    = document.querySelectorAll('.stepper-dot');
+    const panels  = document.querySelectorAll('.stepper-panel');
+    const lines   = [0,1,2].map(i => document.getElementById('line-' + i));
+    const prevBtn = document.getElementById('stepper-prev');
+    const nextBtn = document.getElementById('stepper-next');
+    const progress= document.getElementById('stepper-progress');
+    const footer  = document.getElementById('stepper-footer');
+    const doneEl  = document.getElementById('stepper-done');
+    const content = document.getElementById('stepper-content');
+
+    function goTo(next, dir) {
+      const prev = current;
+      if (next === prev) return;
+
+      // animate out current panel
+      panels[prev].classList.add('exit');
+      panels[prev].classList.remove('active');
+      setTimeout(() => panels[prev].classList.remove('exit'), 380);
+
+      // animate in next panel
+      panels[next].style.transform = `translateX(${dir > 0 ? '32px' : '-32px'})`;
+      panels[next].classList.add('active');
+      setTimeout(() => { panels[next].style.transform = ''; }, 10);
+
+      current = next;
+      render();
+    }
+
+    function render() {
+      // dots
+      dots.forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+        d.classList.toggle('done', i < current);
+      });
+      // lines
+      lines.forEach((l, i) => {
+        l.style.width = i < current ? '100%' : '0%';
+      });
+      // progress
+      progress.textContent = 'Krok ' + (current + 1) + ' z ' + STEPS;
+      // buttons
+      prevBtn.disabled = current === 0;
+      nextBtn.textContent = current === STEPS - 1 ? 'Zakończ' : 'Dalej';
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (current > 0) goTo(current - 1, -1);
+    });
+
+    function showDone() {
+      content.style.display = 'none';
+      footer.style.display = 'none';
+      doneEl.classList.add('show');
+      dots.forEach(d => d.classList.remove('active'));
+      lines.forEach(l => l.style.width = '100%');
+    }
+
+    function hideDone(toStep) {
+      content.style.display = '';
+      footer.style.display = '';
+      doneEl.classList.remove('show');
+      current = toStep;
+      panels.forEach((p, i) => {
+        p.classList.toggle('active', i === toStep);
+        p.classList.remove('exit');
+        p.style.transform = '';
+      });
+      render();
+    }
+
+    nextBtn.addEventListener('click', () => {
+      if (current < STEPS - 1) {
+        goTo(current + 1, 1);
+      } else {
+        showDone();
+      }
+    });
+
+    dots.forEach((d, i) => {
+      d.addEventListener('click', () => {
+        if (doneEl.classList.contains('show')) {
+          hideDone(i);
+        } else if (i !== current) {
+          goTo(i, i > current ? 1 : -1);
+        }
+      });
+    });
+
+    render();
+  })();
 
   /* ── Parallax hero shapes ────────────────────────────────────── */
   const shapes = document.querySelectorAll('.shape-1, .shape-2');
