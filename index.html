@@ -46,15 +46,6 @@
     }
 
     /* ─── Cursor follower ───────────────────────────────────────── */
-    #cursor-dot {
-      position: fixed;
-      width: 8px; height: 8px;
-      background: var(--primary);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-    }
     #cursor-ring {
       position: fixed;
       width: 36px; height: 36px;
@@ -541,19 +532,73 @@
       line-height: 1.7;
       color: var(--text-muted);
     }
-    .carousel-card.fc-accent {
-      background: var(--primary);
-      border-color: var(--primary);
+    /* ─── Magic Rings ────────────────────────────────────────────── */
+    .magic-rings {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      overflow: hidden;
     }
-    .carousel-card.fc-accent .c-icon {
-      background: rgba(243,228,195,0.14);
-      border-color: rgba(243,228,195,0.18);
+    .magic-rings svg {
+      position: absolute;
+      width: min(900px, 140vw);
+      height: min(900px, 140vw);
+      opacity: 0.55;
     }
-    .carousel-card.fc-accent.is-active .c-icon {
-      background: rgba(243,228,195,0.26);
+    .ring {
+      fill: none;
+      stroke-linecap: round;
+      transform-origin: 50% 50%;
     }
-    .carousel-card.fc-accent h3 { color: var(--cream); }
-    .carousel-card.fc-accent p  { color: rgba(243,228,195,0.72); }
+    .ring-1 {
+      stroke: rgba(24,78,80,0.18);
+      stroke-width: 1;
+      animation: spin-cw 28s linear infinite;
+    }
+    .ring-2 {
+      stroke: rgba(24,78,80,0.12);
+      stroke-width: 1;
+      stroke-dasharray: 6 18;
+      animation: spin-ccw 20s linear infinite;
+    }
+    .ring-3 {
+      stroke: rgba(24,78,80,0.22);
+      stroke-width: 1.5;
+      stroke-dasharray: 2 12;
+      animation: spin-cw 14s linear infinite;
+    }
+    .ring-4 {
+      stroke: rgba(24,78,80,0.09);
+      stroke-width: 1;
+      animation: spin-ccw 38s linear infinite;
+    }
+    .ring-5 {
+      stroke: rgba(24,78,80,0.16);
+      stroke-width: 1;
+      stroke-dasharray: 40 20;
+      animation: spin-cw 22s linear infinite;
+    }
+    .ring-6 {
+      stroke: rgba(24,78,80,0.08);
+      stroke-width: 0.8;
+      stroke-dasharray: 3 30;
+      animation: spin-ccw 50s linear infinite;
+    }
+    /* Glowing dot on each ring */
+    .ring-dot {
+      fill: var(--primary);
+      opacity: 0.5;
+      transform-origin: 50% 50%;
+    }
+    .ring-dot-1 { animation: spin-cw  28s linear infinite; }
+    .ring-dot-2 { animation: spin-ccw 20s linear infinite; }
+    .ring-dot-3 { animation: spin-cw  14s linear infinite; }
+    .ring-dot-4 { animation: spin-ccw 38s linear infinite; }
+    @keyframes spin-cw  { from { transform: rotate(0deg); }   to { transform: rotate(360deg); } }
+    @keyframes spin-ccw { from { transform: rotate(0deg); }   to { transform: rotate(-360deg); } }
 
     /* Nav arrows */
     .carousel-nav {
@@ -941,7 +986,6 @@
 <body>
 
 <canvas id="spark-canvas"></canvas>
-<div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
 
 <!-- ─── NAV ─────────────────────────────────────────────────────── -->
@@ -958,6 +1002,28 @@
 
 <!-- ─── HERO ─────────────────────────────────────────────────────── -->
 <section id="hero-section">
+  <!-- Magic Rings background -->
+  <div class="magic-rings" aria-hidden="true">
+    <svg viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg">
+      <!-- Ring 6 – outermost -->
+      <circle class="ring ring-6" cx="450" cy="450" r="420"/>
+      <!-- Ring 5 -->
+      <circle class="ring ring-5" cx="450" cy="450" r="360"/>
+      <!-- Ring 4 -->
+      <circle class="ring ring-4" cx="450" cy="450" r="300"/>
+      <!-- Ring 3 -->
+      <circle class="ring ring-3" cx="450" cy="450" r="240"/>
+      <!-- Ring 2 -->
+      <circle class="ring ring-2" cx="450" cy="450" r="180"/>
+      <!-- Ring 1 – innermost -->
+      <circle class="ring ring-1" cx="450" cy="450" r="120"/>
+      <!-- Glowing dots that orbit on rings -->
+      <circle class="ring-dot ring-dot-1" cx="450" cy="330" r="4"/>
+      <circle class="ring-dot ring-dot-2" cx="450" cy="270" r="3"/>
+      <circle class="ring-dot ring-dot-3" cx="450" cy="210" r="3.5"/>
+      <circle class="ring-dot ring-dot-4" cx="450" cy="150" r="2.5"/>
+    </svg>
+  </div>
   <div class="hero-bg-shapes">
     <div class="shape-1"></div>
     <div class="shape-2"></div>
@@ -1065,7 +1131,7 @@
           <h3>Optymalizacja kosztów</h3>
           <p>Profesjonalne materiały wideo nie muszą oznaczać dużych budżetów. Tworzymy skuteczny content w przystępnej formie.</p>
         </div>
-        <div class="carousel-card fc-accent" data-idx="5">
+        <div class="carousel-card" data-idx="5">
           <div class="c-icon">🚀</div>
           <h3>Materiał nawet w 48h</h3>
           <p>Potrzebujesz materiału na już? Zrealizujemy ekspresową produkcję i dostarczymy gotowy film w rekordowym czasie.</p>
@@ -1389,14 +1455,11 @@
   })();
 
   /* ── Custom cursor ───────────────────────────────────────────── */
-  const dot  = document.getElementById('cursor-dot');
   const ring = document.getElementById('cursor-ring');
   let mx = -200, my = -200, rx = -200, ry = -200;
 
   document.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
-    dot.style.left = mx + 'px';
-    dot.style.top  = my + 'px';
   });
 
   (function animRing() {
