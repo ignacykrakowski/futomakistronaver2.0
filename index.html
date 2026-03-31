@@ -1386,7 +1386,7 @@
   <a href="#portfolio" class="menu-link">Portfolio</a>
   <a href="#contact" class="menu-cta">Napisz do nas →</a>
   <div class="menu-theme">
-    <span>Tryb ciemny</span>
+    <span id="theme-label-mobile">Tryb ciemny</span>
     <button id="theme-toggle-mobile" aria-label="Przełącz motyw">☀️</button>
   </div>
 </div>
@@ -2045,8 +2045,12 @@ Tworzymy nowoczesny content marketingowy dopasowany do tempa współczesnej komu
     function applyTheme(dark) {
       isDark = dark;
       html.setAttribute('data-theme', dark ? DARK : 'light');
-      btn.textContent = dark ? '☀️' : '🌙';
+      btn.textContent = dark ? '🌙' : '☀️';
       localStorage.setItem('theme', dark ? DARK : 'light');
+      const label = document.getElementById('theme-label-mobile');
+      if (label) label.textContent = dark ? 'Tryb ciemny' : 'Tryb jasny';
+      const btnM = document.getElementById('theme-toggle-mobile');
+      if (btnM) btnM.textContent = dark ? '🌙' : '☀️';
     }
 
     applyTheme(isDark);
@@ -2054,11 +2058,7 @@ Tworzymy nowoczesny content marketingowy dopasowany do tempa współczesnej komu
 
     const btnMobile = document.getElementById('theme-toggle-mobile');
     if (btnMobile) {
-      btnMobile.textContent = isDark ? '☀️' : '🌙';
-      btnMobile.addEventListener('click', () => {
-        applyTheme(!isDark);
-        btnMobile.textContent = isDark ? '☀️' : '🌙';
-      });
+      btnMobile.addEventListener('click', () => applyTheme(!isDark));
     }
   })();
 
