@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Przed / Po – futomaki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #F0EDE5;
+      color: #060D0C;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+      gap: 24px;
+    }
+
+    .label-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+    }
+    .label-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(6,13,12,0.35);
+      border: 1px solid rgba(6,13,12,0.13);
+      border-radius: 100px;
+      padding: 5px 14px;
+    }
+    .label-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: #060D0C;
+    }
+    .label-title em {
+      font-style: normal;
+      opacity: 0.35;
+    }
+
+    /* ── Slider ── */
+    .before-after {
+      position: relative;
+      width: 100%;
+      max-width: 860px;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: col-resize;
+      user-select: none;
+      touch-action: none;
+      box-shadow:
+        0 4px 12px rgba(6,13,12,0.07),
+        0 24px 64px rgba(6,13,12,0.14);
+    }
+
+    /* Before image — always full width, forms the base */
+    .before-after .img-before {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 72vh;
+      object-fit: cover;
+      pointer-events: none;
+      draggable: false;
+    }
+
+    /* After image — absolutely positioned, clipped by inline width */
+    .after-layer {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      width: 50%; /* controlled by JS */
+    }
+    .after-layer img {
+      position: absolute;
+      top: 0; left: 0;
+      width: var(--container-w, 860px); /* same as container — never stretches */
+      max-width: none;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      display: block;
+    }
+
+    /* Labels: PRZED / PO */
+    .slide-label {
+      position: absolute;
+      top: 18px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .slide-label-before {
+      right: 18px;
+      background: rgba(6,13,12,0.55);
+      color: rgba(240,237,229,0.9);
+    }
+    .slide-label-after {
+      left: 18px;
+      background: rgba(240,237,229,0.82);
+      color: rgba(6,13,12,0.85);
+    }
+
+    /* Divider line */
+    .slider-line {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: #fff;
+      transform: translateX(-50%);
+      pointer-events: none;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.12);
+    }
+
+    /* Handle circle */
+    .slider-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow:
+        0 2px 8px rgba(0,0,0,0.18),
+        0 0 0 1px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .slider-handle svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: #060D0C;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Hint text */
+    .hint {
+      font-size: 0.78rem;
+      color: rgba(6,13,12,0.38);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="label-row">
+    <span class="label-tag">Wizualizacja AI</span>
+    <h1 class="label-title">Przed <em>/</em> Po</h1>
+  </div>
+
+  <div class="before-after" id="slider">
+    <!-- BEFORE (base layer) -->
+    <img class="img-before" src="materiały do portfolio/lazienka 1/pexels-valentin-ivantsov-2154772556-36035072.jpg" alt="Przed" draggable="false" />
+
+    <!-- AFTER (clipped overlay) -->
+    <div class="after-layer" id="afterLayer">
+      <img src="materiały do portfolio/lazienka 1/1_dark-luxury.png" alt="Po" draggable="false" />
+    </div>
+
+    <!-- Labels -->
+    <span class="slide-label slide-label-before">Przed</span>
+    <span class="slide-label slide-label-after">Po</span>
+
+    <!-- Divider -->
+    <div class="slider-line" id="sliderLine">
+      <div class="slider-handle">
+        <svg viewBox="0 0 20 20">
+          <polyline points="6,5 2,10 6,15"/>
+          <polyline points="14,5 18,10 14,15"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <p class="hint">Przeciągnij, aby porównać</p>
+
+<script>
+  const slider   = document.getElementById('slider');
+  const after    = document.getElementById('afterLayer');
+  const line     = document.getElementById('sliderLine');
+  let dragging   = false;
+
+  function setPos(clientX) {
+    const rect = slider.getBoundingClientRect();
+    let pct = (clientX - rect.left) / rect.width;
+    pct = Math.min(Math.max(pct, 0.02), 0.98);
+    after.style.width    = (pct * 100) + '%';
+    line.style.left      = (pct * 100) + '%';
+    // keep after image natural width = container width
+    after.querySelector('img').style.width = rect.width + 'px';
+  }
+
+  // init
+  window.addEventListener('load', () => {
+    const rect = slider.getBoundingClientRect();
+    after.querySelector('img').style.width = rect.width + 'px';
+  });
+  window.addEventListener('resize', () => {
+    const rect = slider.getBoundingClientRect();
+    after.querySelector('img').style.width = rect.width + 'px';
+  });
+
+  slider.addEventListener('mousedown',  e => { dragging = true; setPos(e.clientX); });
+  window.addEventListener('mousemove',  e => { if (dragging) setPos(e.clientX); });
+  window.addEventListener('mouseup',    ()  => { dragging = false; });
+
+  slider.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+  window.addEventListener('touchmove',  e => { if (dragging) setPos(e.touches[0].clientX); },  { passive: true });
+  window.addEventListener('touchend',   ()  => { dragging = false; });
+</script>
+</body>
+</html>
