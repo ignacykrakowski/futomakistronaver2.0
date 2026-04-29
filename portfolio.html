@@ -282,42 +282,56 @@
     .projects-wrap {
       max-width: 960px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 80px;
     }
 
-    /* Project block */
-    .project-block {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
-    }
-    .project-block.visible { opacity: 1; transform: translateY(0); }
-
+    /* Project header */
     .project-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
     }
-    .project-header h2 {
-      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      color: var(--text);
-    }
-    .project-tag {
+    .project-header .proj-tag {
+      display: inline-block;
       font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text-dim);
       border: 1px solid var(--border-mid);
       border-radius: 100px;
       padding: 4px 12px;
+      margin-bottom: 14px;
+    }
+    .project-header h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 24px;
+      line-height: 1.1;
+    }
+
+    /* Style picker tabs */
+    .style-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .style-tab {
+      padding: 9px 20px;
+      border-radius: 100px;
+      border: 1px solid var(--border-mid);
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+    }
+    .style-tab:hover { border-color: var(--text-dim); color: var(--text); }
+    .style-tab.active {
+      background: var(--btn-fill);
+      color: var(--btn-text);
+      border-color: transparent;
     }
 
     /* Before / After slider */
@@ -519,71 +533,30 @@
 <section id="portfolio-grid">
   <div class="projects-wrap">
 
-    <!-- Styl 1 -->
-    <div class="project-block">
-      <div class="project-header">
-        <h2>Dark Luxury</h2>
-        <span class="project-tag">Wizualizacja AI</span>
+    <div class="project-header">
+      <span class="proj-tag">Wizualizacja AI</span>
+      <h2>Łazienka</h2>
+      <div class="style-tabs">
+        <button class="style-tab active" data-after="materia%C5%82y%20do%20portfolio/LAZIENKA%201/1_dark-luxury.png">Dark Luxury</button>
+        <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/LAZIENKA%201/1_luxury-minimalism.png">Luxury Minimalism</button>
+        <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/LAZIENKA%201/1_luxury-wanna.png">Luxury Wanna</button>
       </div>
-      <div class="before-after" data-slider>
-        <img class="img-before" src="materia%C5%82y%20do%20portfolio/LAZIENKA%201/pexels-valentin-ivantsov-2154772556-36035072.jpg" alt="Przed" draggable="false" />
-        <div class="after-layer">
-          <img src="materia%C5%82y%20do%20portfolio/LAZIENKA%201/1_dark-luxury.png" alt="Po" draggable="false" />
-        </div>
-        <span class="slide-label slide-label-before">Przed</span>
-        <span class="slide-label slide-label-after">Po</span>
-        <div class="slider-line">
-          <div class="slider-handle">
-            <svg viewBox="0 0 20 20"><polyline points="6,5 2,10 6,15"/><polyline points="14,5 18,10 14,15"/></svg>
-          </div>
-        </div>
-      </div>
-      <p class="slider-hint">Przeciągnij, aby porównać</p>
     </div>
 
-    <!-- Styl 2 -->
-    <div class="project-block">
-      <div class="project-header">
-        <h2>Luxury Minimalism</h2>
-        <span class="project-tag">Wizualizacja AI</span>
+    <div class="before-after" id="main-slider" data-slider>
+      <img class="img-before" src="materia%C5%82y%20do%20portfolio/LAZIENKA%201/pexels-valentin-ivantsov-2154772556-36035072.jpg" alt="Przed" draggable="false" />
+      <div class="after-layer" id="after-layer">
+        <img id="after-img" src="materia%C5%82y%20do%20portfolio/LAZIENKA%201/1_dark-luxury.png" alt="Po" draggable="false" />
       </div>
-      <div class="before-after" data-slider>
-        <img class="img-before" src="materia%C5%82y%20do%20portfolio/LAZIENKA%201/pexels-valentin-ivantsov-2154772556-36035072.jpg" alt="Przed" draggable="false" />
-        <div class="after-layer">
-          <img src="materia%C5%82y%20do%20portfolio/LAZIENKA%201/1_luxury-minimalism.png" alt="Po" draggable="false" />
-        </div>
-        <span class="slide-label slide-label-before">Przed</span>
-        <span class="slide-label slide-label-after">Po</span>
-        <div class="slider-line">
-          <div class="slider-handle">
-            <svg viewBox="0 0 20 20"><polyline points="6,5 2,10 6,15"/><polyline points="14,5 18,10 14,15"/></svg>
-          </div>
+      <span class="slide-label slide-label-before">Przed</span>
+      <span class="slide-label slide-label-after">Po</span>
+      <div class="slider-line" id="slider-line">
+        <div class="slider-handle">
+          <svg viewBox="0 0 20 20"><polyline points="6,5 2,10 6,15"/><polyline points="14,5 18,10 14,15"/></svg>
         </div>
       </div>
-      <p class="slider-hint">Przeciągnij, aby porównać</p>
     </div>
-
-    <!-- Styl 3 -->
-    <div class="project-block">
-      <div class="project-header">
-        <h2>Luxury Wanna</h2>
-        <span class="project-tag">Wizualizacja AI</span>
-      </div>
-      <div class="before-after" data-slider>
-        <img class="img-before" src="materia%C5%82y%20do%20portfolio/LAZIENKA%201/pexels-valentin-ivantsov-2154772556-36035072.jpg" alt="Przed" draggable="false" />
-        <div class="after-layer">
-          <img src="materia%C5%82y%20do%20portfolio/LAZIENKA%201/1_luxury-wanna.png" alt="Po" draggable="false" />
-        </div>
-        <span class="slide-label slide-label-before">Przed</span>
-        <span class="slide-label slide-label-after">Po</span>
-        <div class="slider-line">
-          <div class="slider-handle">
-            <svg viewBox="0 0 20 20"><polyline points="6,5 2,10 6,15"/><polyline points="14,5 18,10 14,15"/></svg>
-          </div>
-        </div>
-      </div>
-      <p class="slider-hint">Przeciągnij, aby porównać</p>
-    </div>
+    <p class="slider-hint">Przeciągnij, aby porównać</p>
 
   </div>
 </section>
@@ -608,23 +581,17 @@
     navbar.classList.toggle('scrolled', window.scrollY > 50);
   }, { passive: true });
 
-  // Scroll-in animation
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.project-block').forEach(el => observer.observe(el));
-
-  // Before/After sliders
-  document.querySelectorAll('[data-slider]').forEach(slider => {
-    const afterLayer = slider.querySelector('.after-layer');
-    const afterImg   = afterLayer.querySelector('img');
-    const line       = slider.querySelector('.slider-line');
+  // Before/After slider
+  (function() {
+    const slider     = document.getElementById('main-slider');
+    const afterLayer = document.getElementById('after-layer');
+    const afterImg   = document.getElementById('after-img');
+    const line       = document.getElementById('slider-line');
     let dragging     = false;
 
     function syncWidth() {
       afterImg.style.width = slider.getBoundingClientRect().width + 'px';
     }
-
     function setPos(clientX) {
       const rect = slider.getBoundingClientRect();
       let pct = (clientX - rect.left) / rect.width;
@@ -642,11 +609,26 @@
     window.addEventListener('touchend',   () => { dragging = false; });
     window.addEventListener('resize',     syncWidth);
 
-    // init after image loads
-    const img = slider.querySelector('.img-before');
-    if (img.complete) syncWidth();
-    else img.addEventListener('load', syncWidth);
-  });
+    const before = slider.querySelector('.img-before');
+    if (before.complete) syncWidth();
+    else before.addEventListener('load', syncWidth);
+
+    // Style tabs — swap after image
+    document.querySelectorAll('.style-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.style-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        afterImg.style.opacity = '0';
+        afterImg.style.transition = 'opacity 0.25s';
+        afterImg.src = tab.dataset.after;
+        afterImg.onload = () => {
+          syncWidth();
+          afterImg.style.opacity = '1';
+        };
+      });
+    });
+  })();
 
   (function() {
     const html = document.documentElement;
