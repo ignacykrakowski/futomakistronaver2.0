@@ -276,12 +276,19 @@
 
     /* Projects section */
     #portfolio-grid {
-      padding: 0 24px 100px;
+      padding: 64px 24px 100px;
       background: var(--bg);
     }
     .projects-wrap {
       max-width: 960px;
       margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 100px;
+    }
+    .project-block {
+      display: flex;
+      flex-direction: column;
     }
 
     /* Project header */
@@ -475,8 +482,6 @@
     .footer-copy { font-size: 0.8rem; color: var(--footer-text); }
 
     @media (max-width: 1020px) {
-      .port-grid { grid-template-columns: repeat(2, 1fr); }
-      .port-item:first-child { grid-column: span 2; }
       .nav-links .nav-sublinks { display: none; }
       .nav-cta { display: none; }
       #theme-toggle { display: none; }
@@ -484,9 +489,8 @@
     }
     @media (max-width: 700px) {
       nav { padding: 14px 20px; }
-      .port-grid { grid-template-columns: 1fr; }
-      .port-item:first-child { grid-column: span 1; aspect-ratio: 4/5; }
       footer { flex-direction: column; gap: 12px; text-align: center; }
+      .projects-wrap { gap: 64px; }
     }
   </style>
 </head>
@@ -533,30 +537,68 @@
 <section id="portfolio-grid">
   <div class="projects-wrap">
 
-    <div class="project-header">
-      <span class="proj-tag">Wizualizacja AI</span>
-      <h2>Łazienka</h2>
-      <div class="style-tabs">
-        <button class="style-tab active" data-after="materia%C5%82y%20do%20portfolio/LAZIENKA%201/1_dark-luxury.png">Dark Luxury</button>
-        <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/LAZIENKA%201/1_luxury-minimalism.png">Luxury Minimalism</button>
-        <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/LAZIENKA%201/1_luxury-wanna.png">Luxury Wanna</button>
-      </div>
-    </div>
-
-    <div class="before-after" id="main-slider" data-slider>
-      <img class="img-before" src="materia%C5%82y%20do%20portfolio/LAZIENKA%201/pexels-valentin-ivantsov-2154772556-36035072.jpg" alt="Przed" draggable="false" />
-      <div class="after-layer" id="after-layer">
-        <img id="after-img" src="materia%C5%82y%20do%20portfolio/LAZIENKA%201/1_dark-luxury.png" alt="Po" draggable="false" />
-      </div>
-      <span class="slide-label slide-label-before">Przed</span>
-      <span class="slide-label slide-label-after">Po</span>
-      <div class="slider-line" id="slider-line">
-        <div class="slider-handle">
-          <svg viewBox="0 0 20 20"><polyline points="6,5 2,10 6,15"/><polyline points="14,5 18,10 14,15"/></svg>
+    <!-- PROJEKT: Style salonu -->
+    <div class="project-block" data-project>
+      <div class="project-header">
+        <span class="proj-tag">Wizualizacja AI</span>
+        <h2>Style salonu</h2>
+        <div class="style-tabs">
+          <button class="style-tab active" data-after="materia%C5%82y%20do%20portfolio/STYLE%201/1_artdeco.jpg">Art Deco</button>
+          <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/STYLE%201/1_eklektyczny.jpg">Eklektyczny</button>
+          <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/STYLE%201/1_glamour.jpg">Glamour</button>
+          <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/STYLE%201/1_industrialny.jpg">Industrialny</button>
+          <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/STYLE%201/1_japandi_1.jpg">Japandi</button>
+          <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/STYLE%201/1_klasyczny.jpg">Klasyczny</button>
+          <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/STYLE%201/1_kolonialny.jpg">Kolonialny</button>
+          <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/STYLE%201/1_nowoczesny.jpg">Nowoczesny</button>
+          <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/STYLE%201/1_rustykalny.jpg">Rustykalny</button>
+          <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/STYLE%201/1_skandynawski.jpg">Skandynawski</button>
+          <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/STYLE%201/1_vintage.jpg">Vintage</button>
+          <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/STYLE%201/1_wabi-sabi.jpg">Wabi-Sabi</button>
         </div>
       </div>
+      <div class="before-after" data-slider>
+        <img class="img-before" src="materia%C5%82y%20do%20portfolio/STYLE%201/untitled_Topaz%20Image%20Upscale_2026-04-14_16-44-52.png" alt="Przed" draggable="false" />
+        <div class="after-layer">
+          <img class="after-img" src="materia%C5%82y%20do%20portfolio/STYLE%201/1_artdeco.jpg" alt="Po" draggable="false" />
+        </div>
+        <span class="slide-label slide-label-before">Przed</span>
+        <span class="slide-label slide-label-after">Po</span>
+        <div class="slider-line">
+          <div class="slider-handle">
+            <svg viewBox="0 0 20 20"><polyline points="6,5 2,10 6,15"/><polyline points="14,5 18,10 14,15"/></svg>
+          </div>
+        </div>
+      </div>
+      <p class="slider-hint">Przeciągnij, aby porównać</p>
     </div>
-    <p class="slider-hint">Przeciągnij, aby porównać</p>
+
+    <!-- PROJEKT: Łazienka -->
+    <div class="project-block" data-project>
+      <div class="project-header">
+        <span class="proj-tag">Wizualizacja AI</span>
+        <h2>Łazienka</h2>
+        <div class="style-tabs">
+          <button class="style-tab active" data-after="materia%C5%82y%20do%20portfolio/LAZIENKA%201/1_dark-luxury.png">Dark Luxury</button>
+          <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/LAZIENKA%201/1_luxury-minimalism.png">Luxury Minimalism</button>
+          <button class="style-tab" data-after="materia%C5%82y%20do%20portfolio/LAZIENKA%201/1_luxury-wanna.png">Luxury Wanna</button>
+        </div>
+      </div>
+      <div class="before-after" data-slider>
+        <img class="img-before" src="materia%C5%82y%20do%20portfolio/LAZIENKA%201/pexels-valentin-ivantsov-2154772556-36035072.jpg" alt="Przed" draggable="false" />
+        <div class="after-layer">
+          <img class="after-img" src="materia%C5%82y%20do%20portfolio/LAZIENKA%201/1_dark-luxury.png" alt="Po" draggable="false" />
+        </div>
+        <span class="slide-label slide-label-before">Przed</span>
+        <span class="slide-label slide-label-after">Po</span>
+        <div class="slider-line">
+          <div class="slider-handle">
+            <svg viewBox="0 0 20 20"><polyline points="6,5 2,10 6,15"/><polyline points="14,5 18,10 14,15"/></svg>
+          </div>
+        </div>
+      </div>
+      <p class="slider-hint">Przeciągnij, aby porównać</p>
+    </div>
 
   </div>
 </section>
@@ -581,12 +623,12 @@
     navbar.classList.toggle('scrolled', window.scrollY > 50);
   }, { passive: true });
 
-  // Before/After slider
-  (function() {
-    const slider     = document.getElementById('main-slider');
-    const afterLayer = document.getElementById('after-layer');
-    const afterImg   = document.getElementById('after-img');
-    const line       = document.getElementById('slider-line');
+  // Before/After sliders — generic, one per [data-project]
+  document.querySelectorAll('[data-project]').forEach(project => {
+    const slider     = project.querySelector('[data-slider]');
+    const afterLayer = slider.querySelector('.after-layer');
+    const afterImg   = slider.querySelector('.after-img');
+    const line       = slider.querySelector('.slider-line');
     let dragging     = false;
 
     function syncWidth() {
@@ -613,22 +655,18 @@
     if (before.complete) syncWidth();
     else before.addEventListener('load', syncWidth);
 
-    // Style tabs — swap after image
-    document.querySelectorAll('.style-tab').forEach(tab => {
+    // Style tabs scoped to this project
+    project.querySelectorAll('.style-tab').forEach(tab => {
       tab.addEventListener('click', () => {
-        document.querySelectorAll('.style-tab').forEach(t => t.classList.remove('active'));
+        project.querySelectorAll('.style-tab').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
-
-        afterImg.style.opacity = '0';
+        afterImg.style.opacity   = '0';
         afterImg.style.transition = 'opacity 0.25s';
         afterImg.src = tab.dataset.after;
-        afterImg.onload = () => {
-          syncWidth();
-          afterImg.style.opacity = '1';
-        };
+        afterImg.onload = () => { syncWidth(); afterImg.style.opacity = '1'; };
       });
     });
-  })();
+  });
 
   (function() {
     const html = document.documentElement;
